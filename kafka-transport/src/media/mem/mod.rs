@@ -247,8 +247,9 @@ mod tests {
                 //let mut futs = vec![];
                 while let Some(conn) = listener.incoming.next().await {
                     let h = async move {
-                        let (rh, mut wh) = conn.split();
-                        rh.copy_into(&mut wh).await.unwrap();
+                        // let (rh, mut wh) = conn.split();
+                        // MH: copy_into not known.
+                        // rh.copy_into(&mut wh).await.unwrap();
                     };
                     h.run_in_background();
                     //futs.push(h);

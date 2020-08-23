@@ -3,7 +3,8 @@ use crate::media::{
     TransportMedia,
 };
 
-use futures::{ready, Poll, Stream};
+use futures::{ready, Stream};
+use futures::task::Poll;
 use std::io;
 use std::net::SocketAddr;
 use std::pin::Pin;

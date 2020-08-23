@@ -1,2 +1,2 @@
 [workspace]
-members = ["kafka-protocol", "kafka-protocol-derive", "codegen", "kafka-api", "kafka-transport"]
+members = ["kafka-protocol", "kafka-protocol-derive", "codegen", "kafka-api", "kafka-transport", "rskafka", "example"]

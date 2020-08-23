@@ -1,0 +1,18 @@
+[package]
+name = "rskafka"
+version = "0.0.1"
+authors = ["Matt Howlett"]
+edition = "2018"
+repository = "https://github.com/mhowlett/kafka-protocol-rs"
+
+
+[dependencies]
+tokio = { version = "0.2.22", features = ["full"] }
+futures = { version = "0.3.5", features = ["compat", "io-compat"] }
+kafka-protocol = {version = "=0.0.1", path = "../kafka-protocol"}
+kafka-protocol-derive = {version = "=0.0.1", path = "../kafka-protocol-derive"}
+kafka-transport = {version= "=0.0.1", path = "../kafka-transport"}
+kafka-api = {version= "=0.0.1", path = "../kafka-api"}
+from_variants = "0.4.0"
+bytes = "0.4.12"
+log = "0.4.*"

@@ -1,5 +1,36 @@
-[![Build Status](https://gardnervickers.visualstudio.com/gardner/_apis/build/status/gardner-CI?branchName=master)](https://gardnervickers.visualstudio.com/gardner/_build/latest?definitionId=1&branchName=master)
-[![codecov](https://codecov.io/gh/gardnervickers/kafka-protocol-rs/branch/master/graph/badge.svg)](https://codecov.io/gh/gardnervickers/kafka-protocol-rs)
+# librskafka
+
+The goal of this project is to:
+
+1. Explore the pros and cons of a couple of potential Kafka client architectures that deviate from those employed by the Java client and librdkafka today.
+2. Evaluate the feasibility/value of developing a drop-in replacement for librdkafka written in Rust.
+
+Progress: I've spent just one weekend on this so far, most of that taken up with just thinking about things and leveling-up on my Rust skills - there isn't much in this repo yet. This project may or may not go anywhere (erring on the side of the latter).
+
+This project builds on the awesome (and very convenient for me) [kafka-protocol-rs](..) by [Gardner Vickers](,.), which provides an auto-generated stub for the Kafka protocol in Rust.
+
+## Architecture
+
+What we'd like is architecture which is as simple as possible (making maintenance, support and growth as easy as possible), whilst not compromising on performance in any practically significant way. By that, I mean I'm mostly concerned about efficiency, not raw throughput potential, given throughput is almost always dominated by the network anyway.
+
+I'm focusing on the Consumer because it has the most complexity, so provides the best playground for testing ideas which are aimed at reducing that.
+
+Architectures to explore:
+
+1. A single background thread (in addition to the application thread), that manages practically everything, possibly farming off some CPU intensive tasks to threadpool threads (e.g. decompression). c.f. Java where most work happens on the application thread, and librdkafka which has a main background thread and an additional thread per broker.
+    - The key thought here is that concurrency (of which there is structurally a lot, and which is the key driver of complexity) will be easier to deal with if as much logic as possible is happening linearly.
+    - The downside to this approach is I think a lot of the coordination between tasks will end up being explicit and not well encapsulated.
+2. Leveraging async/await syntax to 
+    - A lot of the complexity in maintaining librdkafka is that 
+
+## Rust vs C
+
+The benefits of rust 
+
+
+# kafka-protocol-rs
+
+(by Gardner Vickers): 
 
 ### Supported Kafka version `2.2.1`
 
